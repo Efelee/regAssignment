@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regular Expression</title>
+</head>
+
+<body>
+  <script>
+
+    // dialogue  with single quotes for dialogue and contractions
+    const story = `
+    Once in the past, Willson expressed uncertainty, stating, "I'm unsure about what you're referring to."
+
+    Smith responded, saying, "He mentioned, 'I'm uncertain as well.'"
+
+    Aren't they both lacking clarity?
+`;
+
+
+    const dialoguePattern = /'([^']+)'/g;
+
+    // Replace single quotes with double quotes for the dialogue
+    const modifiedStory = story.replace(dialoguePattern, '"$1"');
+
+    console.log(modifiedStory);
+
+
+    function realNumber(text) {
+
+      const pattern = /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
+
+      return pattern.test(text);
+    }
+
+    // Test case
+    console.log(realNumber("123"));
+    console.log(realNumber("5.67"));
+    console.log(realNumber(".67"));
+    console.log(realNumber("e-3"));
+    console.log(realNumber("0.123e+4"));
+    console.log(realNumber(".E2"));
+    console.log(realNumber("-.123."));
+    console.log(realNumber("."));
+    console.log(realNumber("abc"));
+
+    //3.
+    /*
+    Take an in input from the client and replace email found with ****
+    */
+
+    let userEmail = prompt(`Enter your Email please`);
+    let emailFound = userEmail.replace(/[^]/g, "*");
+    alert(`email found ${emailFound}`);
+
+
+    // This code checks if the text has words ending with 'ious'
+    let textOne = "The curious cat is oblivious.";
+    let regex1 = /\b\w*ious\b/;
+    let result1 = regex1.test(textOne);
+
+    console.log(result1);
+
+
+
+
+    // This code checks if the text has words longer than six letters
+    let text1 = "Hello . How are you , What's up : Good; Bye.";
+
+    let regex2 = /\b\w{7,}\b/;
+    let secondResult = regex2.test(text1);
+
+    console.log(secondResult); // true (it contains words longer than six letters)
+
+    let text = "Hello World! Exciting examples here.";
+
+    // This code checks if the text contains words without the letter 'e' (case-insensitive)
+    let regex = /\b[^eE\s]+\b/g;
+    let result = text.match(regex);
+
+    console.log(result); // ["World!",]
+    function validate(text) {
+      // Use a regular expression to check for 'car' or 'cat' (case insensitive)
+      const patternOne = /car|cat/i;
+      const patternTwo = /pop|prop/i;
+      const patternThree = /ferret|ferry|ferrari/i;
+
+      // Test the text against the pattern
+      return patternOne.test(text);
+      return patternTwo.test(text);
+      return patternThree.test(text);
+    }
+
+    // Test cases //
+    console.log(validate("car,cat."));
+    console.log(validate("pop, prop."));
+    console.log(validate("ferret,ferry,ferrari."));
+
+
+  </script>
+</body>
+
+</html>
